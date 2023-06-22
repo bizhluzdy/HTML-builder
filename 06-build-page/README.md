@@ -1,45 +1,46 @@
-## Сборка HTML страницы из компонентов и стилей
+### Building an HTML Page from Components and Styles
 
-В файле **index.js** директории **06-build-page** напишите скрипт который:
-1. Создаёт папку  **project-dist**.
-2. Заменяет шаблонные теги в файле **template.html** с названиями файлов из папки components (пример:```{{section}}```) на содержимое одноимённых компонентов и  сохраняет результат в **project-dist/index.html**.
-3. Собирает в единый файл стили из папки **styles** и помещает их в файл **project-dist/style.css**.
-4. Копирует папку **assets** в **project-dist/assets**
+In the **index.js** file in the **06-build-page** directory, write a script that:
 
+1.  Creates a folder called **project-dist**.
+2.  Replaces the template tags in the **template.html** file with the names of the files from the **components** folder (e.g., `{{section}}`) and saves the result in **project-dist/index.html**.
+3.  Bundles the styles from the **styles** folder into a single file and puts it in **project-dist/style.css**.
+4.  Copies the **assets** folder to **project-dist/assets**.
 
-### Общие правила:
+### General Rules:
 
-- Запрещается использование любых сторонних модулей
-- Каждое из заданий должно запускаться командой node <имя папки задания> выполненной в корневой директории
-- Запрещается использование синхронных функций модуля fs такие, как ```fs.statSync(path[, options])```, 
-```fs.readFileSync(path[, options])``` и другие находящиеся в разделе [synchronous API](https://nodejs.org/api/fs.html#fs_synchronous_api)
+-   The use of any external modules is prohibited.
+-   Each task should be executed by running the command `node <task folder name>` in the root directory.
+-   Synchronous fs functions such as `fs.statSync(path[, options])`, `fs.readFileSync(path[, options])`, and others listed under the [synchronous API](https://nodejs.org/api/fs.html#fs_synchronous_api) are not allowed.
 
-### Требования
-- [ ] После завершения работы скрипта должна быть создана папка **project-dist**
-- [ ] В папке **project-dist** должны находиться файлы **index.html** и **style.css** 
-- [ ] В папке **project-dist** должна находиться папка **assets** являющаяся точной копией папки **assets** находящейся в **06-build-page**
-- [ ] Запрещается использование fsPromises.cp()
-- [ ] Файл **index.html** должен содержать разметку являющуюся результатом замены шаблонных тегов в файле **template.html**
-- [ ] Файл **style.css** должен содержать стили собранные из файлов папки **styles** 
-- [ ] При добавлении компонента в папку и соответствующего тега в исходный файл **template.html** повторное выполнение скрипта приведёт файл **index.html** в папке **project-dist** в актуальное состояние перезаписав его. Файл **style.css** и папка **assets** так же должны поддерживать актуальное состояние 
-- [ ] При записи двух и более шаблонных тегов подряд в файле **template.html**, разделенных между собой только пробелами **без переноса строки**, не должно возникать ошибок выполнения кода. Например, `{{about}} {{articles}}` должно расцениваться как 2 отдельных компонента
-- [ ] Исходный файл **template.html** не должен быть изменён в ходе выполнения скрипта
-- [ ] Запись в шаблон содержимого любых файлов кроме файлов с расширением **.html** является ошибкой  
-### Цели задания
+### Requirements:
 
-- Создание небольшой утилиты позволяющей собрать статичную HTML страницу. 
-- Закрепление полученных знаний
+-   After running the script, a folder called **project-dist** should be created.
+-   The **project-dist** folder should contain **index.html** and **style.css** files.
+-   The **project-dist** folder should include the **assets** folder, which is an exact copy of the **assets** folder in the **06-build-page** directory.
+-   The use of fsPromises.cp() is prohibited.
+-   The **index.html** file should contain markup that results from replacing the template tags in the **template.html** file.
+-   The **style.css** file should contain styles compiled from the files in the **styles** folder.
+-   If a component is added to the folder and the corresponding tag is added to the **template.html** file, running the script again should update the **index.html** file in the **project-dist** folder, overwriting it. The **style.css** file and **assets** folder should also be kept up to date.
+-   When writing consecutive template tags in the **template.html** file, separated only by spaces (without line breaks), there should be no runtime errors. For example, `{{about}} {{articles}}` should be treated as two separate components.
+-   The original **template.html** file should not be modified during the execution of the script.
+-   Writing the contents of any files other than those with the **.html** extension should result in an error.
 
-### Описание
+### Objectives:
 
-Один из возможных порядков выполнения задачи:
+-   Building a small utility that allows for the assembly of a static HTML page.
+-   Reinforcing the knowledge gained.
 
-1. Импорт всех требуемых модулей
-2. Прочтение и сохранение в переменной файла-шаблона
-3. Нахождение всех имён тегов в файле шаблона
-4. Замена шаблонных тегов содержимым файлов-компонентов
-5. Запись изменённого шаблона в файл **index.html** в папке **project-dist**
-6. Использовать скрипт написанный в задании **05-merge-styles** для создания файла **style.css**
-7. Использовать скрипт из задания **04-copy-directory** для переноса папки **assets** в папку project-dist 
+### Description:
 
-Обратите внимание, что данный алгоритм вы можете оптимизировать и изменять по своему усмотрению. 
+Here is one possible order of execution for the tasks:
+
+1.  Import all the required modules.
+2.  Read and save the template file to a variable.
+3.  Find all the tag names in the template file.
+4.  Replace the template tags with the contents of the component files.
+5.  Write the modified template to the **index.html** file in the **project-dist** folder.
+6.  Use the script written in the **05-merge-styles** task to create the **style.css** file.
+7.  Use the script from the **04-copy-directory** task to copy the **assets** folder to the **project-dist** folder.
+
+Note that you can optimize and modify this algorithm as you see fit.
